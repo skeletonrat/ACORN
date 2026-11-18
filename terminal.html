@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ACORN | LOG IN
+  </title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>[ A.C.O.R.N. ]</h1>
+      <div class="subtitle">Admin access</div>
+    </header>
+
+    <nav>
+      <a href="index.html">[ Main Node ]</a>
+      <a href="about.html">[ About ACORN ]</a>
+      <a href="archive.html">[ Case Studies ]</a>
+      <a href="terminal.html">[ Log In ]</a>
+    </nav>
+
+    <main>
+      <h2>Enter Administrative Credentials</h2>
+      <p>
+        Authorized users only. Authentication is verified locally.
+      </p>
+
+      <div>
+        <input type="text" id="passInput" class="terminal-input" placeholder="Enter passphrase...">
+        <button class="btn" onclick="verifyAccess()">AUTHENTICATE</button>
+      </div>
+
+      <div id="resultBox" class="notice-box" style="display: none;"></div>
+    </main>
+
+    <footer>
+      Intended for Laurel Ridge Community College Cyber Club
+    </footer>
+  </div>
+
+  <script>
+    const ENCODED_KEY = "YWswcm50MzV0MW5n";
+    const ENCODED_FLAG = "ZmxhZ3tkMG4ndF9sM2F2M18zbmNyeXB0MTBuXzFuX3MwdXJjM19jMGQzIX0=";
+
+    function verifyAccess() {
+      const userInput = document.getElementById("passInput").value.trim();
+      const resultBox = document.getElementById("resultBox");
+      resultBox.style.display = "block";
+
+      if (btoa(userInput) === ENCODED_KEY) {
+        document.cookie = "sysop_clearance=granted; path=/";
+        resultBox.innerHTML = "<strong>ACCESS GRANTED:</strong><br>Welcome back, administrator. Flag 4: <code>" + atob(ENCODED_FLAG) + "</code>";
+      } else {
+        resultBox.innerHTML = "<strong>ACCESS DENIED:</strong><br>Invalid passphrase. Incident logged to /dev/null.";
+      }
+    }
+  </script>
+</body>
+</html>
