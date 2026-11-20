@@ -1,2 +1,2 @@
 User-agent: *
-Disallow: /sensitive-data/
+Disallow: /IMPORTANT-RECORDS.txt/
